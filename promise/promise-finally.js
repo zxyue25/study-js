@@ -135,6 +135,15 @@ class Promise {
     }
 }
 
+
+// Promise.prototype.finally = function(callback){
+//     let P = this.constructor
+//     return this.then(
+//         data => P.resolve(callback()).then(() => data),
+//         err => P.resolve(callback()).then(() => {throw err})
+//     )
+// }
+
 Promise.prototype.finally = function (callback) {
     return this.then(
         value => Promise.resolve(callback()).then(() => value),
@@ -161,44 +170,33 @@ Promise.reject = function (reason) {
     return new Promise(_, reject => reject(reason))
 }
 
-Promise.all = function (promiseArr) {
+Promise.all = function (values) {
     return new Promise((resolve, reject) => {
         let arr = []
         let index = 0
 
         function processData (i, data) {
             arr[i] = data
-            if (++index === promiseArr.length) { // 不能用arr.length === promiseArr.length；因为promiseArr中有异步promise的话，arr不会按照顺序被塞进返回值
+            if (++index === values.length) { // 不能用arr.length === values.length；因为values中有异步promise的话，arr不会按照顺序被塞进返回值
                 resolve(arr)
             }
         }
-
-        for (let i = 0; i < promiseArr.length; i++) {
-            let current = promiseArr[i]
+        for (let i = 0; i < values.length; i++) {
+            let current = values[i]
             if (isPromise(current)) {
                 // 如果是promis，执行then
                 current.then(data => {
                     processData(i, data)
-                }, reject)
+                }, err => {
+                    console.log(err)
+                    reject(err)
+                })
             } else {
                 // 如果不是promise，直接返回
                 processData(i, current)
             }
         }
     })
-}
-
-Promise.race = function (promiseArr) {
-    return new Promise((resolve, reject) => {
-        for (let i = 0; i < promiseArr.length; i++) {
-            const current = promiseArr[i];
-            Promise.resolve(current).then(resolve, reject);
-        }
-    });
-}
-
-Promise.prototype.catch = function (reject){
-    return this.then(null, reject)
 }
 
 module.exports = Promise

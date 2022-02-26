@@ -2,7 +2,7 @@ const Promise = require('./promise-base')
 
 const promise = new Promise((resolve, reject) => {
     // 成功的情况
-    // resolve(1)
+    resolve(1)
 
     // 失败的情况
     // reject(1)
@@ -20,14 +20,14 @@ promise.then(data => {
     console.log('err', err)
 })
 
-promise.then(data => {
-    console.log(data)
-}, err => {
-    console.log('err', err)
-})
+// promise.then(data => {
+//     console.log(data)
+// }, err => {
+//     console.log('err', err)
+// })
 
-promise.then(data => {
-    console.log(data)
-}, err => {
-    console.log('err', err)
-})
+// promise.then(data => {
+//     console.log(data)
+// }, err => {
+//     console.log('err', err)
+// })

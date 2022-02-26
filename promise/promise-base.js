@@ -37,6 +37,7 @@ class Promise {
             reject(e) // 如果立即执行函数发生错误等价于调用失败函数
         }
     }
+    
     then (onFulfilled, onReject) {
         // 同步
         if (this.status === RESOLVED) {
