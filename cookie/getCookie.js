@@ -1,0 +1,2 @@
+function getCookie(name){
+}
