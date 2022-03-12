@@ -3,7 +3,7 @@ Function.prototype.myApply = function (context = window, ...args) {
 
     let key = Symbol('key')
     context[key] = this
-    const result = context[key](args)
+    const res = context[key](args)
     delete context[key]
-    return result
+    return res
 }

@@ -5,15 +5,15 @@ Function.prototype.myCall = function (context) {
     context.fn = this
     // 将 context 后面的参数取出来
     const args = [...arguments].slice(1)
-    const result = context.fn(...args)
+    const res = context.fn(...args)
     delete context.fn
-    return result
+    return res
 }
 
 Function.prototype.myCall = function(context = window, ...args){
     const key = Symbol('key')
     context[key] = this
-    const result = context[key](...args)
+    const res = context[key](...args)
     delete context[key]
-    return result
+    return res
 }

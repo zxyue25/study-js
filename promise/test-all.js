@@ -18,15 +18,15 @@ Promise.all([1, 2, new Promise((resolve) => { resolve(300) }), 4]).then(data => 
 // const p1 = new Promise((resolve, reject) => {
 //     resolve('hello');
 //   })
-//   .then(result => result)
+//   .then(res => res)
 //   .catch(e => e);
   
 //   const p2 = new Promise((resolve, reject) => {
 //     throw new Error('报错了');
 //   })
-//   .then(result => result)
+//   .then(res => res)
 // //   .catch(e => e);
   
 //   Promise.all([p1, p2])
-//   .then(result => console.log(result))
+//   .then(res => console.log(res))
 // //   .catch(e => console.log(e));

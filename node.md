@@ -532,9 +532,9 @@ promise
 // 等同于
 promise
 .then(
-  result => {
+  res => {
     // 语句
-    return result;
+    return res;
   },
   error => {
     // 语句
