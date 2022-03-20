@@ -14,7 +14,7 @@ for (let i = 0; i <= 5; i++) {
 }
 // ES6 中新增的 let 定义变量的方式，使得 ES6 之后 JS 发生革命性的变化，让 JS 有了块级作用域，代码的作用域以块级为单位进行执行。通过改造后的代码，可以实现上面想要的结果。
 
-for (let i = 0; i <= 5; i++) {
+for (var i = 0; i <= 5; i++) {
   setTimeout(
     (j) => {
       console.log(j);
@@ -25,7 +25,7 @@ for (let i = 0; i <= 5; i++) {
 }
 // setTimeout 作为经常使用的定时器，它是存在第三个参数的，日常工作中我们经常使用的一般是前两个，一个是回调函数，另外一个是时间，而第三个参数用得比较少。那么结合第三个参数，调整完之后的代码如下。
 
-for (let i = 0; i <= 5; i++) {
+for (var i = 0; i <= 5; i++) {
   (function ieef(j) {
     setTimeout(() => {
       console.log(j);

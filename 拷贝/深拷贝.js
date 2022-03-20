@@ -21,17 +21,19 @@ function deepClone(target) {
   if (typeof target !== "object" || target === null) {
     return target;
   }
-  let cloneTarget = null
-  if(Array.isArray(target)){
-    cloneTarget = []
+  let cloneTarget = null;
+  if (Array.isArray(target)) {
+    cloneTarget = [];
     target.forEach((value, index) => {
-      cloneTarget[index] = typeof value === 'object' ? deepClone(value) : value
-    })
-  } else{
-    cloneTarget = {}
-    Object.keys(target).forEach(key => {
-      cloneTarget[key] = typeof value === 'object' ? deepClone(target[key]) : target[key]
-    })
+      cloneTarget[index] =
+        typeof value === "object" && value !== null ? deepClone(value) : value;
+    });
+  } else {
+    cloneTarget = {};
+    Object.keys(target).forEach((key) => {
+      cloneTarget[key] =
+        typeof target[key] === "object" && target[key] !== null ? deepClone(target[key]) : target[key];
+    });
   }
   return cloneTarget;
 }
@@ -41,9 +43,13 @@ function deepClone(target) {
 
 // 手写复杂版
 // 循环引用 weakMap
-function deepClone(target, hash = new WeakMap()){
-  if(target !== Object || target === null || target instanceof Date || target instanceof RegExp){
-    return target
+function deepClone(target, hash = new WeakMap()) {
+  if (
+    target !== Object ||
+    target === null ||
+    target instanceof Date ||
+    target instanceof RegExp
+  ) {
+    return target;
   }
-
 }
