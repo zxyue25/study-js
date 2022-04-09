@@ -481,7 +481,7 @@ Promise.all = function (promiseArr) {
         for (let i = 0; i < promiseArr.length; i++) {
             let current = promiseArr[i]
             if (isPromise(current)) {
-                // 如果是promis，执行then
+                // 如果是promise，执行then
                 current.then(data => {
                     processData(i, data)
                 }, err => {

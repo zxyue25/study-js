@@ -1,6 +1,5 @@
 // 微任务：Promise.then()、muatationObserver、nextTick 微任务
 // 宏任务：ajax、setTimeout、event、script、I/O
-
 document.body.style.backgroundColor = "red";
 console.log(1);
 Promise.resolve().then(() => {
@@ -12,7 +11,6 @@ console.log(3);
 // 3
 // 2
 // 不会显示red，因为UI渲染在微任务之后
-
 
 
 document.body.style.backgroundColor = "red";
@@ -29,7 +27,6 @@ console.log(3);
 
 
 console.log('script start');
-
 setTimeout(function() {
   console.log('setTimeout');
 }, 0);

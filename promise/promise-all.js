@@ -158,7 +158,7 @@ Promise.all = function (values) {
         for (let i = 0; i < values.length; i++) {
             let current = values[i]
             if (isPromise(current)) {
-                // 如果是promis，执行then
+                // 如果是promise，执行then
                 current.then(data => {
                     processData(i, data)
                 }, err => {
