@@ -42,7 +42,6 @@ class Promise {
             if (this.status === PENDING) {
                 this.value = value
                 this.status = RESOLVED
-                this.onFulfilledCallbacks.forEach(fn => fn());
             }
         }
 
@@ -51,7 +50,6 @@ class Promise {
             if (this.status === PENDING) {
                 this.reason = reason
                 this.status = REJECTED
-                this.onRejectCallbacks.forEach(fn => fn())
             }
         }
 
@@ -70,12 +68,6 @@ class Promise {
         }
         if (this.status === REJECTED) {
             onReject(this.reason)
-        }
-
-        // 异步订阅
-        if (this.status === PENDING) { 
-            this.onFulfilledCallbacks.push(() => onFulfilled(this.value))
-            this.onRejectCallbacks.push(() => onReject(this.reason))
         }
     }
 }
@@ -279,6 +271,7 @@ x可能的值
     - 执行x的then方法，返回相应值
 - 普通值
     - 直接resolve 
+    
 **现象**
 ```js
 // then函数的返回值还是一个promise
